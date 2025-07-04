@@ -1,0 +1,16 @@
+{
+  "name": "12--devdependencies",
+  "version": "1.0.0",
+  "description": "",
+  "main": "12- DevDependencies.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "jshint": "^2.13.6"
+  }
+}

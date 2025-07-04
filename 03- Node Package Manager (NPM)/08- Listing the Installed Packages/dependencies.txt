@@ -1,0 +1,31 @@
+08--listing-the-installed-packages@1.0.0 /Users/reacher/Documents/HyperSkill/nodejs/nodejs-mosh/03- Node Package Manager (NPM)/08- Listing the Installed Packages
+├─┬ mongoose@8.12.1
+│ ├── bson@6.10.3
+│ ├── kareem@2.6.3
+│ ├─┬ mongodb@6.14.2
+│ │ ├── UNMET OPTIONAL DEPENDENCY @aws-sdk/credential-providers@^3.188.0
+│ │ ├─┬ @mongodb-js/saslprep@1.2.0
+│ │ │ └─┬ sparse-bitfield@3.0.3
+│ │ │   └── memory-pager@1.5.0
+│ │ ├── UNMET OPTIONAL DEPENDENCY @mongodb-js/zstd@^1.1.0 || ^2.0.0
+│ │ ├── bson@6.10.3 deduped
+│ │ ├── UNMET OPTIONAL DEPENDENCY gcp-metadata@^5.2.0
+│ │ ├── UNMET OPTIONAL DEPENDENCY kerberos@^2.0.1
+│ │ ├── UNMET OPTIONAL DEPENDENCY mongodb-client-encryption@>=6.0.0 <7
+│ │ ├─┬ mongodb-connection-string-url@3.0.2
+│ │ │ ├─┬ @types/whatwg-url@11.0.5
+│ │ │ │ └── @types/webidl-conversions@7.0.3
+│ │ │ └─┬ whatwg-url@14.1.1
+│ │ │   ├─┬ tr46@5.0.0
+│ │ │   │ └── punycode@2.3.1
+│ │ │   └── webidl-conversions@7.0.0
+│ │ ├── UNMET OPTIONAL DEPENDENCY snappy@^7.2.2
+│ │ └── UNMET OPTIONAL DEPENDENCY socks@^2.7.1
+│ ├── mpath@0.9.0
+│ ├─┬ mquery@5.0.0
+│ │ └─┬ debug@4.4.0
+│ │   └── ms@2.1.3 deduped
+│ ├── ms@2.1.3
+│ └── sift@17.1.3
+└── underscore@1.13.7
+

@@ -1,0 +1,16 @@
+{
+  "name": "06--npm-packages-and-source-control",
+  "version": "1.0.0",
+  "main": "06- NPM Packages and Source Control.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "mongoose": "^8.12.1",
+    "underscore": "^1.13.7"
+  }
+}
