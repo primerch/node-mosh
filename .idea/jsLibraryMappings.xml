@@ -3,5 +3,23 @@
   <component name="JavaScriptLibraryMappings">
     <includedPredefinedLibrary name="Node.js Core" />
     <excludedPredefinedLibrary name="HTML" />
+    <excludedPredefinedLibrary name="node-mosh/03- Node Package Manager (NPM)/03- Installing a Node Package/node_modules" />
+    <excludedPredefinedLibrary name="node-mosh/03- Node Package Manager (NPM)/04- Using a Package/node_modules" />
+    <excludedPredefinedLibrary name="node-mosh/03- Node Package Manager (NPM)/05- Package Dependencies/node_modules" />
+    <excludedPredefinedLibrary name="node-mosh/03- Node Package Manager (NPM)/06- NPM Packages and Source Control/node_modules" />
+    <excludedPredefinedLibrary name="node-mosh/03- Node Package Manager (NPM)/07- Semantic Versioning/node_modules" />
+    <excludedPredefinedLibrary name="node-mosh/03- Node Package Manager (NPM)/08- Listing the Installed Packages/node_modules" />
+    <excludedPredefinedLibrary name="node-mosh/03- Node Package Manager (NPM)/12- DevDependencies/node_modules" />
+    <excludedPredefinedLibrary name="node-mosh/04- Building RESTful API's Using Express/03- Introducing Express/node_modules" />
+    <excludedPredefinedLibrary name="node-mosh/04- Building RESTful API's Using Express/04- Building Your First Web Server/node_modules" />
+    <excludedPredefinedLibrary name="node-mosh/04- Building RESTful API's Using Express/06- Environment Variables/node_modules" />
+    <excludedPredefinedLibrary name="node-mosh/04- Building RESTful API's Using Express/07- Route Parameters/node_modules" />
+    <excludedPredefinedLibrary name="node-mosh/04- Building RESTful API's Using Express/08- Handling HTTP GET Requests/node_modules" />
+    <excludedPredefinedLibrary name="node-mosh/04- Building RESTful API's Using Express/09- Handling HTTP POST Requests/node_modules" />
+    <excludedPredefinedLibrary name="node-mosh/04- Building RESTful API's Using Express/11- Input Validation/node_modules" />
+    <excludedPredefinedLibrary name="node-mosh/04- Building RESTful API's Using Express/12- Handling HTTP PUT Requests/node_modules" />
+    <excludedPredefinedLibrary name="node-mosh/04- Building RESTful API's Using Express/13- Handling HTTP Delete Requests/node_modules" />
+    <excludedPredefinedLibrary name="node-mosh/04- Building RESTful API's Using Express/14- Project- Build the Genres API/4.14- Project- Genres Endpoint/mine/node_modules" />
+    <excludedPredefinedLibrary name="node-mosh/05- Express- Advanced Topics/2- Middleware/node_modules" />
   </component>
 </project>
