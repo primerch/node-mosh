@@ -2,9 +2,9 @@ console.log("Before");
 
 getUser(1, (user) => {
   console.log(`Username: ${user.githubUsername}`);
-  getRepository(user, (repos) => {
+  getRepository(user.githubUsername, (repos) => {
     console.log(`Repositories: ${repos}`);
-    getCommits(repos, (commits) => {
+    getCommits(repos[0], (commits) => {
       console.log(`Commits: ${commits}`);
     });
   });
