@@ -9,17 +9,16 @@ POST http://localhost:3000/api/courses
 Content-Type: application/json
 
 {
-  "name": "Node.js"
+  "name": "React.js"
 }
 
 ### PUT
-PUT http://localhost:3000/api/courses/1
+PUT http://localhost:3000/api/courses/3
 Content-Type: application/json
 
 {
-  "name": "XM"
+  "name": "React.js"
 }
 
 ### DELETE
-DELETE http://localhost:3000/api/courses/1
-
+DELETE http://localhost:3000/api/courses/3
