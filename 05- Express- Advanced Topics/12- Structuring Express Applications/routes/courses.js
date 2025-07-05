@@ -1,7 +1,6 @@
 const express = require("express");
 const { z, ZodError } = require("zod/v4");
 const router = express.Router();
-const debug = require("debug");
 
 const courses = [
   { id: 1, name: "HTML" },
