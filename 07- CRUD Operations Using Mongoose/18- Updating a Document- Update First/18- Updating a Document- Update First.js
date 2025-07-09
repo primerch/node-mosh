@@ -54,7 +54,7 @@ async function run() {
   const findByIdAndUpdateResult = await updateCourseWithFindByIdAndUpdate(id);
   console.log("findByIdAndUpdate result:", findByIdAndUpdateResult);
 
-  mongoose.disconnect();
+  await mongoose.disconnect();
 }
 
 run();
