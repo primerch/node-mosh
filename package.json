@@ -19,7 +19,7 @@
     "node": "^20.19.4",
     "pug": "3.0.3",
     "typescript": "^5.8.3",
-    "zod": "^3.25.72"
+    "zod": "^4.0.14"
   },
   "devDependencies": {
     "@types/mongoose": "^5.11.96",
