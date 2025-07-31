@@ -1,13 +1,26 @@
 const { z } = require("zod");
 const express = require("express");
+const mongoose = require("mongoose");
 const router = express.Router();
 
-const schema = z.object({ name: z.string().min(3) });
+const zodSchema = z.object({ name: z.string().min(3) });
+
+mongoose
+  .connect("mongodb://localhost/mongo-exercises")
+  .then(() => console.log("✅"))
+  .catch((e) => console.log("🔴"));
+
+const mongooseSchema = new mongoose.Schema({
+  id: Number,
+  name: { type: String, min: 3 },
+});
+
+const Genre = mongoose.model("Genre", mongooseSchema);
 
 const genres = [
-  { id: 1, name: "Action" },
-  { id: 2, name: "Horror" },
-  { id: 3, name: "Romance" },
+  // { id: 1, name: "Action" },
+  // { id: 2, name: "Horror" },
+  // { id: 3, name: "Romance" },
 ];
 
 // GET
@@ -16,11 +29,15 @@ router.get("/", (req, res) => {
 });
 
 // POST
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   try {
-    const validatedData = schema.parse(req.body);
+    const validatedData = zodSchema.parse(req.body);
+
     const newGenre = { id: genres.length + 1, name: validatedData.name };
-    genres.push(newGenre);
+
+    const newMongoGenre = new Genre(newGenre);
+    await newMongoGenre.save();
+
     res.send(newGenre);
   } catch (e) {
     if (e instanceof z.ZodError) {
@@ -40,7 +57,7 @@ router.put("/:id", (req, res) => {
   }
 
   try {
-    const validatedData = schema.parse(req.body);
+    const validatedData = zodSchema.parse(req.body);
     genre.name = validatedData.name;
     res.status(200).send(genre);
   } catch (e) {
