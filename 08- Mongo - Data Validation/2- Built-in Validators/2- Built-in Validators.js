@@ -6,13 +6,8 @@ mongoose
   .catch((e) => console.log("🔴"));
 
 const courseSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    require: true,
-    minLength: 5,
-    maxLength: 15,
-    // match: /pattern/
-  },
+  name: { type: String, lowercase: true },
+
   category: {
     type: String,
     required: true,
