@@ -1,0 +1,21 @@
+### GET
+GET http://localhost:3000/api/genres
+
+### POST
+POST http://localhost:3000/api/genres
+Content-Type: application/json
+
+{
+  "name": "Science"
+}
+
+### PUT
+PUT http://localhost:3000/api/genres/1
+Content-Type: application/json
+
+{
+  "name": "Love Action"
+}
+
+### DELETE
+DELETE http://localhost:3000/api/genres/1
