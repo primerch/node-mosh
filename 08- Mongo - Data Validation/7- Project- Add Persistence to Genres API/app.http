@@ -1,6 +1,9 @@
 ### GET
 GET http://localhost:3000/api/genres
 
+### GET BY ID
+GET http://localhost:3000/api/genres/688c24e181d8d11d1658ee2a
+
 ### POST
 POST http://localhost:3000/api/genres
 Content-Type: application/json
@@ -10,7 +13,7 @@ Content-Type: application/json
 }
 
 ### PUT
-PUT http://localhost:3000/api/genres/688c24c981d8d11d1658ee26
+PUT http://localhost:3000/api/genres/688c24d081d8d11d1658ee28
 Content-Type: application/json
 
 {

@@ -1,41 +1,39 @@
 const debug = require("debug")("app:debug");
+const mongoose = require("mongoose");
 const { z } = require("zod");
 const express = require("express");
-const mongoose = require("mongoose");
 const router = express.Router();
 
-const zodSchema = z.object({ name: z.string().min(3) });
+const genreZodSchema = z.object({ name: z.string().min(5).max(50) });
 
-mongoose
-  .connect("mongodb://localhost/mongo-exercises")
-  .then(() => console.log("✅"))
-  .catch((e) => console.log("🔴", e));
-
-const mongooseSchema = new mongoose.Schema({
-  name: { type: String, minLength: 3, required: true },
+const genreMongooseSchema = new mongoose.Schema({
+  name: { type: String, minLength: 5, maxLength: 50, required: true },
 });
 
-const Genre = mongoose.model("Genre", mongooseSchema);
-
-const genres = [
-  // { id: 1, name: "Action" },
-  // { id: 2, name: "Horror" },
-  // { id: 3, name: "Romance" },
-];
+const Genre = mongoose.model("Genre", genreMongooseSchema);
 
 // GET
 router.get("/", async (req, res) => {
-  const result = await Genre.find();
+  const result = await Genre.find().sort("name");
   res.send(result);
+});
+
+// GET BY ID
+router.get("/:id", async (req, res) => {
+  const genre = await Genre.findById(req.params.id);
+
+  if (!genre)
+    return res.status(404).send("Cannot find the genre you are looking for");
+  res.send(genre);
 });
 
 // POST
 router.post("/", async (req, res) => {
   try {
-    const validatedData = zodSchema.parse(req.body);
+    const validatedData = genreZodSchema.parse(req.body);
 
-    const newMongoGenre = new Genre({ name: validatedData.name });
-    await newMongoGenre.save();
+    let newMongoGenre = new Genre({ name: validatedData.name });
+    newMongoGenre = await newMongoGenre.save();
 
     res.status(200).send(newMongoGenre);
   } catch (e) {
@@ -52,23 +50,18 @@ router.post("/", async (req, res) => {
 
 // PUT
 router.put("/:id", async (req, res) => {
-  // const genre = genres.find((genre) => genre.id === parseInt(req.params.id));
-  const genre = await Genre.findById(req.params.id);
-
-  if (!genre) {
-    return res.status(404).send("Cannot find the genre you are looking for");
-  }
-
   try {
-    const validatedData = zodSchema.parse(req.body);
-    const result = await Genre.findByIdAndUpdate(
+    const validatedData = genreZodSchema.parse(req.body);
+
+    const updatedGenre = await Genre.findByIdAndUpdate(
       { _id: req.params.id },
       {
         name: validatedData.name,
       },
       { new: true },
     );
-    res.status(200).send(result);
+    if (!updatedGenre) return res.status(404).send("Cannot find the genre");
+    res.status(200).send(updatedGenre);
   } catch (e) {
     if (e instanceof z.ZodError) {
       const errorMessages = e.issues.map((issue) => issue.message);
@@ -84,14 +77,13 @@ router.put("/:id", async (req, res) => {
 // DELETE
 router.delete("/:id", async (req, res) => {
   // const genre = genres.find((genre) => genre.id === parseInt(req.params.id));
-  const genre = await Genre.findById(req.params.id);
-  if (!genre)
+  const deletedGenre = await Genre.findByIdAndDelete(req.params.id);
+  if (!deletedGenre)
     return res
       .status(404)
-      .send("ZOD🔴\nCannot find the genre you are looking for");
+      .send("Cannot find the genre you are trying to delete");
 
-  const result = await Genre.findByIdAndDelete(req.params.id);
-  res.status(200).send(result);
+  res.status(200).send(deletedGenre);
 });
 
-module.exports.router = router;
+module.exports.genreRouter = router;
