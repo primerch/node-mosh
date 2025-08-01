@@ -1,5 +1,4 @@
 {
-  "esModuleInterop": true,
   "name": "node-mosh",
   "version": "0.0.0",
   "private": true,

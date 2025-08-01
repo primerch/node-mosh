@@ -6,16 +6,16 @@ POST http://localhost:3000/api/genres
 Content-Type: application/json
 
 {
-  "name": "Action"
+  "name": "Horror"
 }
 
 ### PUT
-PUT http://localhost:3000/api/genres/1
+PUT http://localhost:3000/api/genres/688c24c981d8d11d1658ee26
 Content-Type: application/json
 
 {
-  "name": "Love Action"
+  "name": "Thriller"
 }
 
 ### DELETE
-DELETE http://localhost:3000/api/genres/1
+DELETE http://localhost:3000/api/genres/688c24c981d8d11d1658ee26

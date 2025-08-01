@@ -1,3 +1,4 @@
+const debug = require("debug")("app:debug");
 const { z } = require("zod");
 const express = require("express");
 const mongoose = require("mongoose");
@@ -8,11 +9,10 @@ const zodSchema = z.object({ name: z.string().min(3) });
 mongoose
   .connect("mongodb://localhost/mongo-exercises")
   .then(() => console.log("✅"))
-  .catch((e) => console.log("🔴"));
+  .catch((e) => console.log("🔴", e));
 
 const mongooseSchema = new mongoose.Schema({
-  id: Number,
-  name: { type: String, min: 3 },
+  name: { type: String, minLength: 3, required: true },
 });
 
 const Genre = mongoose.model("Genre", mongooseSchema);
@@ -24,8 +24,9 @@ const genres = [
 ];
 
 // GET
-router.get("/", (req, res) => {
-  res.send(genres);
+router.get("/", async (req, res) => {
+  const result = await Genre.find();
+  res.send(result);
 });
 
 // POST
@@ -33,16 +34,16 @@ router.post("/", async (req, res) => {
   try {
     const validatedData = zodSchema.parse(req.body);
 
-    const newGenre = { id: genres.length + 1, name: validatedData.name };
-
-    const newMongoGenre = new Genre(newGenre);
+    const newMongoGenre = new Genre({ name: validatedData.name });
     await newMongoGenre.save();
 
-    res.send(newGenre);
+    res.status(200).send(newMongoGenre);
   } catch (e) {
     if (e instanceof z.ZodError) {
       const errorMessages = e.issues.map((issue) => issue.message);
-      res.status(400).send(errorMessages.join(", "));
+      res.status(400).send("ZOD🔴\n" + errorMessages.join(", "));
+    } else if (e.name === "ValidationError") {
+      return res.status(400).send("MONGOOSE🔴\n" + e.message);
     } else {
       res.status(500).send("Internal Server Error");
     }
@@ -50,20 +51,30 @@ router.post("/", async (req, res) => {
 });
 
 // PUT
-router.put("/:id", (req, res) => {
-  const genre = genres.find((genre) => genre.id === parseInt(req.params.id));
+router.put("/:id", async (req, res) => {
+  // const genre = genres.find((genre) => genre.id === parseInt(req.params.id));
+  const genre = await Genre.findById(req.params.id);
+
   if (!genre) {
     return res.status(404).send("Cannot find the genre you are looking for");
   }
 
   try {
     const validatedData = zodSchema.parse(req.body);
-    genre.name = validatedData.name;
-    res.status(200).send(genre);
+    const result = await Genre.findByIdAndUpdate(
+      { _id: req.params.id },
+      {
+        name: validatedData.name,
+      },
+      { new: true },
+    );
+    res.status(200).send(result);
   } catch (e) {
     if (e instanceof z.ZodError) {
       const errorMessages = e.issues.map((issue) => issue.message);
-      res.status(400).send(errorMessages.join(", "));
+      res.status(400).send("ZOD🔴\n" + errorMessages.join(", "));
+    } else if (e.name === "ValidationError") {
+      return res.status(400).send("MONGOOSE🔴\n" + e.message);
     } else {
       res.status(500).send("Internal Server Error");
     }
@@ -71,12 +82,16 @@ router.put("/:id", (req, res) => {
 });
 
 // DELETE
-router.delete("/:id", (req, res) => {
-  const genre = genres.find((genre) => genre.id === parseInt(req.params.id));
+router.delete("/:id", async (req, res) => {
+  // const genre = genres.find((genre) => genre.id === parseInt(req.params.id));
+  const genre = await Genre.findById(req.params.id);
   if (!genre)
-    return res.status(404).send("Cannot find the genre you are looking for");
+    return res
+      .status(404)
+      .send("ZOD🔴\nCannot find the genre you are looking for");
 
-  res.status(200).send(genres.splice(genres.indexOf(genre), 1)[0]);
+  const result = await Genre.findByIdAndDelete(req.params.id);
+  res.status(200).send(result);
 });
 
 module.exports.router = router;
