@@ -1,0 +1,23 @@
+### GET
+GET http://localhost:3000/api/customers
+
+### GET BY ID
+GET http://localhost:3000/api/customers/688cf779aa3d441f6da1f8ca
+
+### POST
+POST http://localhost:3000/api/customers
+Content-Type: application/json
+
+{
+  "isGold":true,
+  "name": "Reacher",
+  "phone": "19886005992"
+}
+
+### PUT
+PUT http://localhost:3000/api/customers/688cf779aa3d441f6da1f8c3
+Content-Type: application/json
+
+{
+  "Name": "Ruizhi"
+}
