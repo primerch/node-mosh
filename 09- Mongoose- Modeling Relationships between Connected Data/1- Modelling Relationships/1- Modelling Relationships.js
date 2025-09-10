@@ -1,45 +1,30 @@
-// Trade off between query performance vs consistency
+// 1. Using References (Normalization) -> CONSISTENCY
+// let author = {
+//   name: 'reacher',
+// };
+// let course = {
+//   author: 'id',
+// };
 
-// Using References (Normalization) -> CONSISTENCY
-const author = {
-  _id: "auth123",
-  name: "Mosh",
-  email: "mosh@example.com",
-};
+// 2. Using Embedded Documents (Denormalization) -> PERFORMANCE
+// let author = {
+//   name: 'reacher',
+// };
+// let course = {
+//   author: {
+//     name: 'reacher',
+//   },
+// };
 
-const course = {
-  _id: "course123",
-  title: "MongoDB Course",
-  authorId: "auth123", // Reference to author document
-};
+// 3. Using Hybrid Approach
+// let author = {
+//   name: 'reacher',
+//   // 50 other properties
+// }
 
-// Using Embedded Documents (Denormalization) -> PERFORMANCE
-const courseWithEmbedded = {
-  _id: "course123",
-  title: "MongoDB Course",
-  author: {
-    name: "Mosh",
-    email: "mosh@example.com",
-  },
-};
-
-// Hybrid Approach
-const authorFull = {
-  _id: "auth123",
-  name: "Mosh",
-  email: "mosh@example.com",
-  bio: "Full stack developer",
-  socialMedia: {
-    twitter: "@mosh",
-    github: "mosh-hamedani",
-  },
-};
-
-const courseHybrid = {
-  _id: "course123",
-  title: "MongoDB Course",
-  author: {
-    _id: "auth123", // Reference to full author document
-    name: "Mosh", // Frequently accessed field embedded
-  },
-};
+// let course = {
+//   author: {
+//     id: 'ref',
+//     name: 'reacher'
+//   }
+// }
