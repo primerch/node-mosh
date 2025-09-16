@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "jest"
+    "test": "jest --watchAll"
   },
   "dependencies": {
     "config": "^4.1.1",

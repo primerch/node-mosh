@@ -6,7 +6,8 @@
   },
   "jest.outputConfig": {
     "revealOn": "run",
-    "revealWithFocus": "test-results",
+    "revealWithFocus": "none",
     "clearOnRun": "none"
-  }
+  },
+  "testing.automaticallyOpenTestResults": "neverOpen"
 }
