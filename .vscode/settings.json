@@ -1,4 +1,12 @@
 {
   "trae.tab.enableRename": false,
-  "trae.tab.enableAutoImport": false
+  "trae.tab.enableAutoImport": false,
+  "jest.runMode": {
+    "type": "watch"
+  },
+  "jest.outputConfig": {
+    "revealOn": "run",
+    "revealWithFocus": "test-results",
+    "clearOnRun": "none"
+  }
 }
